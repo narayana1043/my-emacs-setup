@@ -1,10 +1,14 @@
 ;; Load custom configuration files
-(add-to-list 'load-path "~/projects/code/lisp/configs/")
+(let ((default-directory "~/projects/code/my-emacs-setup/configs/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(add-to-list 'load-path "~/projects/code/my-emacs-setup/configs/")
 
 (load "my-base.el")
 (load "keybindings.el")
 (load "my-file-management.el")
 (load "my-project-management.el")
+(load "my-lsp.el")
 (load "my-ui.el")
 (load "my-org.el")
 (load "my-platform.el")

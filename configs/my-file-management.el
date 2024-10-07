@@ -1,3 +1,6 @@
+;; enable auto revert buffer globally
+(setq global-auto-revert-mode t)
+
 ;;closed dired buffers are just buried
 ;;they need to be refresed if you go back to them
 (use-package dired-single)

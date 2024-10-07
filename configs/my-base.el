@@ -96,5 +96,3 @@
 
 ;; command log mode to show emacs cmd flow
 (use-package command-log-mode)
-
-
