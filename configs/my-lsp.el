@@ -7,6 +7,9 @@
   :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+  :bind
+  (:map lsp-mode-map
+	("<tab>" . company-indent-or-complete-common))
   :config
   (lsp-enable-which-key-integration t))
 
@@ -33,20 +36,18 @@
   (require 'dap-node)
   (dap-node-setup) ;; Automatically installs Node debug adapter if needed
 
-  ;; Bind `C-c l d` to `dap-hydra` for easy access
+  ;; Bind `C-c l d` t;; o `dap-hydra` for easy access
   (general-define-key
     :keymaps 'lsp-mode-map
     :prefix lsp-keymap-prefix
     "d" '(dap-hydra t :wk "debugger")))
 
-
 (use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
+  :after prog-mode
+  :hook (prog-mode . company-mode)
+  :bind
+  (:map company-active-map
+	("<tab>" . company-complete-selection))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -57,11 +58,6 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
-
-(use-package lsp-mode
-  :bind ("C-c l" . lsp-mode)
-  :config
-  (lsp-enable-which-key-integration t))
 
 ;; load my-elisp configs
 (load "my-elisp")
