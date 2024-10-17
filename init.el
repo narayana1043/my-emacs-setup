@@ -12,6 +12,7 @@
 (load "my-ui.el")
 (load "my-org.el")
 (load "my-platform.el")
+(load "my-shell.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
