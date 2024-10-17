@@ -4,7 +4,9 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . efs/lsp-mode-setup)
+  :hook
+  ((lsp-mode . efs/lsp-mode-setup)
+   (python-mode . lsp))
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :bind
@@ -43,8 +45,7 @@
     "d" '(dap-hydra t :wk "debugger")))
 
 (use-package company
-  :after prog-mode
-  :hook (prog-mode . company-mode)
+  :hook (lsp-mode . company-mode)
   :bind
   (:map company-active-map
 	("<tab>" . company-complete-selection))
@@ -61,3 +62,4 @@
 
 ;; load my-elisp configs
 (load "my-elisp")
+(load "my-py.el")
